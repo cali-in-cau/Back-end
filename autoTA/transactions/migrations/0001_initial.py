@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('trans_type', models.IntegerField(default=0)),
                 ('trans_date', models.DateTimeField(auto_now=True)),
                 ('stock_price', models.IntegerField(default=0)),
-                ('ammount', models.IntegerField(default=0)),
+                ('amount', models.IntegerField(default=0)),
                 ('stock', models.ForeignKey(db_column='stock_id', on_delete=django.db.models.deletion.CASCADE, related_name='t_stock', to='stocks.stock')),
                 ('user', models.ForeignKey(db_column='user_id', on_delete=django.db.models.deletion.CASCADE, related_name='t_user', to=settings.AUTH_USER_MODEL)),
             ],
