@@ -5,12 +5,17 @@ from .utils import stocks_api
 def index(request):
     return render(request, 'index.html')
 
-def save_stock_data(request):
-    stocks_api.save_stock_data_in_db()
+def save_stocks_data(request):
+    stocks_api.save_stocks_data_in_db()
     print('data is saved')
     return render(request,'index.html')
 
-def delete_stock_data(request):
-    stocks_api.delete_stock_data()
+def delete_stocks_data(request):
+    stocks_api.delete_stocks_data()
     print('data is deleted')
     return render(request, 'index.html')
+
+def show_stock_graph(request):
+    data = stocks_api.get_stock_data('238490.KQ')
+    print('show the stock data')
+    return render(request, 'show_graph.html',{"data":data})

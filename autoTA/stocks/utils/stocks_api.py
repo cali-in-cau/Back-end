@@ -34,7 +34,7 @@ def get_download_kosdaq():
     return df
 
 
-def save_stock_data_in_db():
+def save_stocks_data_in_db():
     # kospi,kosdaq 종목코드 각각 다운로드
     kospi_df = get_download_kospi()
     kosdaq_df = get_download_kosdaq()
@@ -55,27 +55,36 @@ def save_stock_data_in_db():
         '회사명': 'name',
         '종목코드': 'code'
     })
-
-    for row in kospi_df.itertuples():
+    code_df = pd.concat([kospi_df, kosdaq_df])
+    for row in code_df.itertuples():
         name = row.name
         code = row.code
         print(name,code)
         if not Stock.objects.filter(stock_code=code).exists():
             print(name,code)
-            stock = Stock(stock_type='kospi',stock_code=code,stock_name=name)
+            stock = Stock(stock_code=code,stock_name=name)
             stock.save()
 
-    for row in kosdaq_df.itertuples():
-        name = row.name
-        code = row.code
-        print(name,code)
-        if not Stock.objects.filter(stock_code=code).exists():
-            print(name,code)
-            stock = Stock(stock_type='kospi',stock_code=code,stock_name=name)
-            stock.save()
-
-def delete_stock_data():
+def delete_stocks_data():
     Stock.objects.all().delete()
 
+def get_stock_data(code):
+    data = {'info':{},'data':{}}
+    stock = Stock.objects.filter(stock_code=code)
+    if stock.exists():
+        start_date = '1996-05-06'
+        data['info']['code'] = stock.first().stock_code
+        data['info']['name'] = stock.first().stock_name
+        df_graph_data = pdr.get_data_yahoo(code,start_date)['Close']
+        #raw_data = df_graph_data.to_json(orient='table')
+        date = []
+        close = []
+        for index,value in enumerate(df_graph_data):
+            date.append(value)
+            close.append(df_graph_data.index[index])
+        data['data']['date'] = date
+        data['data']['close'] = close
+    print(data)
+    return data
     #code = get_code(code_df, '삼성전자')
     # get_data_yahoo API를 통해서 yahho finance의 주식 종목 데이터를 가져온다.df = pdr.get_data_yahoo(code)
