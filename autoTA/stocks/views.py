@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .utils import stocks_api
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 # Create your views here.
 def index(request):
@@ -17,5 +19,6 @@ def delete_stocks_data(request):
 
 def show_stock_graph(request):
     data = stocks_api.get_stock_data('238490.KQ')
+    data = json.dumps(data, cls=DjangoJSONEncoder)
     print('show the stock data')
     return render(request, 'show_graph.html',{"data":data})

@@ -69,21 +69,21 @@ def delete_stocks_data():
     Stock.objects.all().delete()
 
 def get_stock_data(code):
-    data = {'info':{},'data':{}}
+    data = {"info":{},"data":{}}
     stock = Stock.objects.filter(stock_code=code)
     if stock.exists():
         start_date = '1996-05-06'
-        data['info']['code'] = stock.first().stock_code
-        data['info']['name'] = stock.first().stock_name
+        data["info"]["code"] = stock.first().stock_code
+        data["info"]["name"] = stock.first().stock_name
         df_graph_data = pdr.get_data_yahoo(code,start_date)['Close']
         #raw_data = df_graph_data.to_json(orient='table')
         date = []
         close = []
         for index,value in enumerate(df_graph_data):
-            date.append(value)
-            close.append(df_graph_data.index[index])
-        data['data']['date'] = date
-        data['data']['close'] = close
+            close.append(value)
+            date.append(df_graph_data.index[index])
+        data["data"]["date"] = date
+        data["data"]["close"] = close
     print(data)
     return data
     #code = get_code(code_df, '삼성전자')

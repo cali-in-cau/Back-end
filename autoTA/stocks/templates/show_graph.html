@@ -1,3 +1,5 @@
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +11,7 @@
         google.charts.setOnLoadCallback(drawVisualization);
         
         function drawVisualization(){
-            const raw_data = "{{data}}";
-            console.log(raw_data)
+            const raw_data = JSON.parse("{{data|escapejs}}");
             let _data = [];
             _data.push(['date','close']);
             for(let i = 0; i < raw_data['data']['date'].length; i++){
@@ -18,7 +19,7 @@
             }
             var data = google.visualization.arrayToDataTable(_data)
             var options = {
-                title: `${raw_date['info']['name']} 주식 그래프`,
+                title: `${raw_data['info']['name']} 주식 그래프`,
                 vAxis: {title:'value'},
                 hAxis: {title:'days'},
                 seriesType:'bars',
@@ -31,7 +32,8 @@
     <title>Document</title>
 </head>
 <body>
-    hihi
     <div id='chart_div'style="width:900px; height: 500px;"></div>
 </body>
 </html>
+
+{% endblock %}
