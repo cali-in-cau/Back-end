@@ -4,4 +4,7 @@ from . import views
 
 urlpatterns = [
     path('',views.index, name='index'),
+    path('save_stocks_data/',views.save_stocks_data),
+    path('delete_stocks_data/',views.delete_stocks_data),
+    path('show_stock_graph/',views.show_stock_graph),
 ]
