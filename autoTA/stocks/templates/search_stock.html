@@ -1,0 +1,15 @@
+{% block content %}
+<div class="row justify-content-end my-3">
+    <div class="col-4 input group">
+        <input type="text" class="form-control kw"
+               value="{{ kw|default_if_none:''}}">
+        <div class="input-group-append">
+            <button class="btn btn-online-secondary" type="button" id="btn_search">찾기</button>
+        </div>>
+    </div>>
+</div>>
+
+<form id="searchForm" method="get" action="{%url 'index' %}">
+    <input type ="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+</form>>
+{% endblock %}
