@@ -24,3 +24,4 @@ def show_stock_graph(request,stock_code):
     print('show the stock data')
     return HttpResponse(data)
     #return render(request, 'show_graph.html',{"data":data})
+
