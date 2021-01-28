@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .utils import stocks_api
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -25,3 +26,10 @@ def show_stock_graph(request,stock_code):
     return HttpResponse(data)
     #return render(request, 'show_graph.html',{"data":data})
 
+def search_stock_data(request):
+    keyword = request.GET.get('keyword','') #검색어
+    if keyword:
+        stocks_api.get_stock_data(keyword)
+
+    print('searched data name : ')
+    return(request, 'index.html')
