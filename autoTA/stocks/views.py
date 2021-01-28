@@ -27,9 +27,11 @@ def show_stock_graph(request,stock_code):
     #return render(request, 'show_graph.html',{"data":data})
 
 def search_stock_data(request):
-    keyword = request.GET.get('keyword','') #검색어
-    if keyword:
-        stocks_api.get_stock_data(keyword)
+    kw = request.GET.get('kw', '')  # 검색어
+    if kw:
+        stocks_api.get_stock_data().filter(
+            Q(stock_name=kw)
+        ).distinct()
 
     print('searched data name : ')
     return(request, 'index.html')
