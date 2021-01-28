@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .utils import stocks_api
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -17,8 +18,9 @@ def delete_stocks_data(request):
     print('data is deleted')
     return render(request, 'index.html')
 
-def show_stock_graph(request):
-    data = stocks_api.get_stock_data('238490.KQ')
+def show_stock_graph(request,stock_code):
+    data = stocks_api.get_stock_data(stock_code)
     data = json.dumps(data, cls=DjangoJSONEncoder)
     print('show the stock data')
-    return render(request, 'show_graph.html',{"data":data})
+    return HttpResponse(data)
+    #return render(request, 'show_graph.html',{"data":data})
