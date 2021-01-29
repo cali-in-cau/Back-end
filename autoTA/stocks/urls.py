@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('',views.index, name='index'),
+    path('search_stock_data', views.search_stock_data),
     path('save_stocks_data/',views.save_stocks_data),
     path('delete_stocks_data/',views.delete_stocks_data),
     path('data/<str:stock_code>',views.show_stock_graph),

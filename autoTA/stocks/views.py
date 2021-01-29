@@ -4,6 +4,7 @@ from .utils import stocks_api
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
+from .models import Stock
 
 # Create your views here.
 def index(request):
