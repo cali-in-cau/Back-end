@@ -34,10 +34,7 @@ def get_stock_data(code):
         data["info"]["name"] = stock.first().stock_name
         data["info"]["type"] = stock.first().stock_type
         data["info"]["industry"] = stock.first().stock_industry
-        if data["info"]["type"] == 'KOSPI' or data["info"]["type"] == 'KOSDAQ':
-            df_graph_data = fdr.DataReader(code,start,end)
-        elif data["info"]["type"] == 'NASDAQ':
-            df_graph_data = fdr.DataReader(code,start,end)
+        df_graph_data = fdr.DataReader(code,start,end)
         date = []
         value = []
         for i,row in df_graph_data.iterrows():
@@ -45,7 +42,5 @@ def get_stock_data(code):
             value.append(row.to_dict())
         data['data']['date'] = date
         data['data']['value'] = value
-        print(data)
+        #print(data)
     return data
-    #code = get_code(code_df, '삼성전자')
-    # get_data_yahoo API를 통해서 yahho finance의 주식 종목 데이터를 가져온다.df = pdr.get_data_yahoo(code)
