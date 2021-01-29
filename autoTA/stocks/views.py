@@ -27,6 +27,7 @@ def show_stock_graph(request,stock_code):
     return HttpResponse(data)
     #return render(request, 'show_graph.html',{"data":data})
 
+
 def search_stock_data(request):
     kw = request.GET.get('kw', '')  # 검색어
     if kw:
@@ -35,4 +36,4 @@ def search_stock_data(request):
         ).distinct()
 
     print('searched data name : ')
-    return(request, 'index.html')
+    return render(request, 'index.html')
