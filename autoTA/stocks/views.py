@@ -5,6 +5,7 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from .models import Stock
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -28,12 +29,21 @@ def show_stock_graph(request,stock_code):
     #return render(request, 'show_graph.html',{"data":data})
 
 
-def search_stock_data(request):
-    kw = request.GET.get('kw', '')  # 검색어
-    if kw:
-        stocks_api.get_stock_data().filter(
-            Q(stock_name=kw)
-        ).distinct()
+def search_stock(request):
+    stocks = Stock.objects.all()
+    keyword = request.GET.get('keyword', '')  # 검색어
+    if keyword:
+        stock_search_result = stocks.filter(Q(stock_name__icontains=keyword))
 
-    print('searched data name : ')
-    return render(request, 'index.html')
+    #print(stock_search_result)
+    return render(request, 'result.html')
+
+#
+# def result(request):
+#     keyword = request.GET['keyword']
+#     stocks = Stock.objects.all()
+#     print('stocks search')
+#     if keyword:
+#         stock_results = stocks.objects.filter(stock_name = keyword)
+#
+#     return render(request, 'index.html', {'stock_results': stock_results})

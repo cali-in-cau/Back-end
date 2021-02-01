@@ -49,3 +49,4 @@ def get_stock_data(code):
     return data
     #code = get_code(code_df, '삼성전자')
     # get_data_yahoo API를 통해서 yahho finance의 주식 종목 데이터를 가져온다.df = pdr.get_data_yahoo(code)
+
