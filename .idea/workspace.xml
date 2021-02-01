@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de957b08-322a-4824-88f8-727efc62e2e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/autoTA/stocks/templates/result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/stocks/templates/search_stock.html" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/templates/search_stock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/stocks/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/stocks/utils/stocks_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/utils/stocks_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoTA/stocks/templates/search_stock.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/autoTA/stocks/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -35,15 +35,8 @@ def search_stock(request):
     if keyword:
         stock_search_result = stocks.filter(Q(stock_name__icontains=keyword))
 
-    #print(stock_search_result)
+    print(stock_search_result)
+
     return render(request, 'result.html')
 
-#
-# def result(request):
-#     keyword = request.GET['keyword']
-#     stocks = Stock.objects.all()
-#     print('stocks search')
-#     if keyword:
-#         stock_results = stocks.objects.filter(stock_name = keyword)
-#
-#     return render(request, 'index.html', {'stock_results': stock_results})
+
