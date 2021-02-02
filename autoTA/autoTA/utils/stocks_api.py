@@ -1,7 +1,8 @@
 import FinanceDataReader as fdr
 import pandas as pd
 from datetime import datetime
-from ..models import Stock
+from stocks.models import Stock
+from users.models import Favorite,User
 
 
 def save_in_db(stock_df,index='none'):
@@ -44,9 +45,25 @@ def get_stock_data(code):
         data['data']['value'] = value
         #print(data)
     return data
-<<<<<<< HEAD
-    #code = get_code(code_df, '삼성전자')
-    # get_data_yahoo API를 통해서 yahho finance의 주식 종목 데이터를 가져온다.df = pdr.get_data_yahoo(code)
 
-=======
->>>>>>> de9c0a6ae1b3f4dca73ff652637af1fd57c1a48c
+def add_favorite(user_email,favorite_code):
+    user = User.objects.get(email=user_email)
+    stock = Stock.objects.get(stock_code=favorite_code)
+    favorite = Favorite.objects.filter(user=user, stock= stock)
+    if not favorite.exists():
+        favorite = Favorite(user=user, stock= stock)
+        favorite.save()
+
+def delete_favorite(user_email,favorite_code):
+    user = User.objects.get(email=user_email)
+    stock = Stock.objects.get(stock_code=favorite_code)
+    favorite = Favorite.objects.filter(user=user, stock= stock)
+    if favorite.exists():
+        favorite.delete()
+
+def get_favorites(user_email):
+    favorites = Favorite.objects.filter(user=user_email)
+    data = []
+    for favorite in favorites:
+        data.append({'stock_name':favorite.stock.stock_name,'stock_code':favorite.stock.stock_code})
+    return data

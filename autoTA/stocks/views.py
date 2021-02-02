@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .utils import stocks_api
+from autoTA.utils import stocks_api
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
@@ -11,19 +11,19 @@ from django.contrib import messages
 def index(request):
     return render(request, 'index.html')
 
-def save_stocks_data(request):
+def save_stocks(request):
     stocks_api.save_stocks_data_in_db()
     print('data is saved')
     return render(request,'index.html')
 
-def delete_stocks_data(request):
+def delete_stocks(request):
     stocks_api.delete_stocks_data()
     print('data is deleted')
     return render(request, 'index.html')
 
-def show_stock_graph(request,stock_code):
+def stock_graph(request,stock_code):
     data = stocks_api.get_stock_data(stock_code)
-    data = json.dumps(data, cls=DjangoJSONEncoder)
+    data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
     print('show the stock data')
     return HttpResponse(data)
     #return render(request, 'show_graph.html',{"data":data})
@@ -37,5 +37,4 @@ def search_stock(request):
         print(stock_search_result)
 
     return render(request, 'result.html')
-
 

@@ -163,4 +163,4 @@ SOCIALACCOUNT_PROVIDERS = {
         'VERSION': 'v2.9',
     }
 }
-LOGIN_REDIRECT_URL ='/admin'
+LOGIN_REDIRECT_URL ='/back/success'
