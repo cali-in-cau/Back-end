@@ -20,8 +20,9 @@ from users.views import LoginView, SuccessView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/',include('allauth.urls')),
-    path('stocks/',include('stocks.urls')),
-    path('transactions/',include('transactions.urls')),
-    path('login/', LoginView),
-    path("success/", SuccessView),
+    path('back/users/',include('users.urls')),
+    path('back/stocks/',include('stocks.urls')),
+    path('back/transactions/',include('transactions.urls')),
+    path('back/login/', LoginView),
+    path("back/success/", SuccessView),
 ]
