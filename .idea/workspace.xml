@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="de957b08-322a-4824-88f8-727efc62e2e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/stocks/templates/search_stock.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/autoTA/stocks/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

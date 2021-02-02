@@ -34,8 +34,7 @@ def search_stock(request):
     keyword = request.GET.get('keyword', '')  # 검색어
     if keyword:
         stock_search_result = stocks.filter(Q(stock_name__icontains=keyword))
-
-    print(stock_search_result)
+        print(stock_search_result)
 
     return render(request, 'result.html')
 
