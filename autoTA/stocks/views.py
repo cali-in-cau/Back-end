@@ -1,3 +1,5 @@
+from typing import Dict, Any
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from autoTA.utils import stocks_api
@@ -29,12 +31,31 @@ def stock_graph(request,stock_code):
     #return render(request, 'show_graph.html',{"data":data})
 
 
-def search_stock(request):
+def search_stock(request,keyword):
     stocks = Stock.objects.all()
-    keyword = request.GET.get('keyword', '')  # 검색어
+   # keyword = request.GET.get('keyword', '')  # 검색어
+    stock_data = []
+    context = {}
     if keyword:
-        stock_search_result = stocks.filter(Q(stock_name__icontains=keyword))
-        print(stock_search_result)
+        stock_with_keyword = stocks.filter(stock_name__icontains=keyword)
+        for stock in stock_with_keyword:
+            name = stock.stock_name
+            code = stock.stock_code
+            data = {'name': name, 'code': code}
+            stock_data.append(data)
+    context['result'] = stock_data
+    print(context)
+    return render(request, 'index.html', context)
 
-    return render(request, 'result.html')
+def search_stock_with_code(request, stock_code):
+    stock = Stock.objects.get(stock_code = stock_code)
+    if stock_code:
+        name = stock.stock_name
+        code = stock.stock_code
+        stockType = stock.stock_type
+        industry = stock.stock_industry
+
+        context = {'name': name, 'code': code, 'type': stockType, 'industry': industry}
+        print(context)
+    return render(request, 'result.html', context)
 
