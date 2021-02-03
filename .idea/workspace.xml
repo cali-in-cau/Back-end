@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de957b08-322a-4824-88f8-727efc62e2e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/autoTA/news/templates/bbc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/autoTA/news/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/stocks/templates/result.html" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/templates/result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/stocks/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoTA/stocks/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoTA/stocks/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +15,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML4 File" />
       </list>
     </option>
   </component>
@@ -31,6 +30,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML4 File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
