@@ -25,5 +25,5 @@ urlpatterns = [
     path('back/transactions/',include('transactions.urls')),
     path('back/login/', LoginView),
     path("back/success/", SuccessView),
-    #path('back/news/',include('news.urls')),
+    path('back/news/',include('news.urls')),
 ]
