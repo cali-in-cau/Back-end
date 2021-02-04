@@ -19,11 +19,11 @@ from users.views import LoginView, SuccessView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/',include('allauth.urls')),
+    path('back/accounts/',include('allauth.urls')),
     path('back/users/',include('users.urls')),
     path('back/stocks/',include('stocks.urls')),
     path('back/transactions/',include('transactions.urls')),
     path('back/login/', LoginView),
     path("back/success/", SuccessView),
-    path('back/news/',include('news.urls')),
+    #path('back/news/',include('news.urls')),
 ]
