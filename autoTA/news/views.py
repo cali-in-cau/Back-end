@@ -3,26 +3,22 @@ from newsapi import NewsApiClient
 
 # Create your views here.
 
+import requests
 
 def index(request):
-    newsapi = NewsApiClient(api_key="a898ddc1-35f2-42c3-ac04-dd6f9cbf3a8a")
-    topheadlines = newsapi.get_top_headlines(sources='al-jazeera-english')
+    url = "https://google-news.p.rapidapi.com/v1/topic_headlines"
 
-    articles = topheadlines['articles']
+    querystring = {"lang": "en", "country": "US", "topic": "business"}
 
-    desc = []
-    news = []
-    img = []
+    headers = {
+        'x-rapidapi-key': "5dd3a7daf5msh8aab6de8f4a3c93p1069c3jsnd645a395d8a8",
+        'x-rapidapi-host': "google-news.p.rapidapi.com"
+    }
 
-    for i in range(len(articles)):
-        myarticles = articles[i]
+    response = requests.request("GET", url, headers=headers, params=querystring)
 
-        news.append(myarticles['title'])
-        desc.append(myarticles['description'])
-        img.append(myarticles['urlToImage'])
+    print(response.text)
+    
 
-    mylist = zip(news, desc, img)
+    return render(request, 'index.html')
 
-
-
-    return render(request, 'index.html', context={"mylist":mylist})
