@@ -163,4 +163,4 @@ SOCIALACCOUNT_PROVIDERS = {
         'VERSION': 'v2.9',
     }
 }
-LOGIN_REDIRECT_URL ='/back/success'
+LOGIN_REDIRECT_URL ='http://52.79.227.118/accept'

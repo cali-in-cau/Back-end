@@ -33,7 +33,7 @@ def stock_graph(request,stock_code):
 
 def search_stock(request,keyword):
     stocks = Stock.objects.all()
-   # keyword = request.GET.get('keyword', '')  # 검색어
+    # keyword = request.GET.get('keyword', '')  # 검색어
     stock_data = []
     context = {}
     if keyword:
@@ -44,8 +44,9 @@ def search_stock(request,keyword):
             data = {'name': name, 'code': code}
             stock_data.append(data)
     context['result'] = stock_data
+    context = json.dumps(context, cls=DjangoJSONEncoder,ensure_ascii = False)
     print(context)
-    return render(request, 'index.html', context)
+    return HttpResponse(context)
 
 def search_stock_with_code(request, stock_code):
     stock = Stock.objects.get(stock_code = stock_code)
@@ -56,6 +57,7 @@ def search_stock_with_code(request, stock_code):
         industry = stock.stock_industry
 
         context = {'name': name, 'code': code, 'type': stockType, 'industry': industry}
+        context = json.dumps(context, cls=DjangoJSONEncoder,ensure_ascii = False)
         print(context)
-    return render(request, 'result.html', context)
+    return HttpResponse(context)
 
