@@ -177,6 +177,6 @@ CORS_ORIGIN_ALLOW_ALL = True # <- 모든 호스트 허용
 
 CORS_ORIGIN_WHITELIST = (
     "http://yaeoni.o-r.kr",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000"
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
 )
