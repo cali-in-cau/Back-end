@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from corsheaders.defaults import default_headers
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,6 +28,11 @@ SECRET_KEY = ')gk-%i+&v_^06qn%u)q2=f_ckhh2sgz1u(we_2=eee_h9y49d3'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+#CORS error-0
+CORS_ALLOW_HEADERS = default_headers + (
+    'Access-Control-Allow-Origin',
+)
 
 
 # Application definition
