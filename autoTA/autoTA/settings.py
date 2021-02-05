@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
+    #cors error -1
+    'corsheaders',
 ]
 
 #about allauth -2
@@ -58,6 +61,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 MIDDLEWARE = [
+    #cors error -2
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -164,3 +170,13 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 LOGIN_REDIRECT_URL ='http://52.79.227.118/accept'
+
+
+#cors error -3
+CORS_ORIGIN_ALLOW_ALL = True # <- 모든 호스트 허용
+
+CORS_ORIGIN_WHITELIST = (
+    "http://yaeoni.o-r.kr",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000"
+)
