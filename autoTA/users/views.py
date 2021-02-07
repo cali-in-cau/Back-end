@@ -51,5 +51,5 @@ def register(request):
     user = auth.get_user_info(data['token'])
     success = {'success':True}
     response = HttpResponse(json.dumps(success))
-    response.set_cookie('token',user)
+    response.set_cookie('token',user,httponly=True)
     return response
