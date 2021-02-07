@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from users.views import LoginView, SuccessView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,7 +22,5 @@ urlpatterns = [
     path('back/users/',include('users.urls')),
     path('back/stocks/',include('stocks.urls')),
     path('back/transactions/',include('transactions.urls')),
-    path('back/login/', LoginView),
-    path("back/success/", SuccessView),
     path('back/news/',include('news.urls')),
 ]
