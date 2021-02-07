@@ -187,3 +187,4 @@ CORS_ORIGIN_ALLOW_ALL = True # <- 모든 호스트 허용
 #    "http://127.0.0.1:8080",
 #    "http://52.79.227.188",
 #)
+SESSION_COOKIE_HTTPONLY = True
