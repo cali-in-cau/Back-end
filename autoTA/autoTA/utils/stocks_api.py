@@ -62,8 +62,20 @@ def delete_favorite(user_email,favorite_code):
         favorite.delete()
 
 def get_favorites(user_email):
-    favorites = Favorite.objects.filter(user=user_email)
+    user = User.objects.get(email = user_email)
+    favorites = Favorite.objects.filter(user=user)
     data = []
     for favorite in favorites:
         data.append({'stock_name':favorite.stock.stock_name,'stock_code':favorite.stock.stock_code})
     return data
+
+def get_user_info(user_email):
+    user = User.objects.get(email=user_email)
+    return user
+
+def valid_user(user_email):
+    user = User.objects.filter(email=user_email)
+    if(user.exists()):
+        return True
+    else:
+        return False

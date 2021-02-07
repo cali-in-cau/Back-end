@@ -14,21 +14,38 @@ def SuccessView(request):
 
 
 def add_favorite(request, stock_code):
-    user_id = request.user
+    data = json.loads(request.body)
+    user_id = data['email']
     stocks_api.add_favorite(user_id,stock_code)
     favorites = stocks_api.get_favorites(user_id)
     favorites = json.dumps(favorites, cls=DjangoJSONEncoder,ensure_ascii = False)
     return HttpResponse(favorites)
 
 def delete_favorite(request, stock_code):
-    user_id = request.user
+    data = json.loads(request.body)
+    user_id = data['email']
     stocks_api.delete_favorite(user_id,stock_code)
     favorites = stocks_api.get_favorites(user_id)
     favorites = json.dumps(favorites, cls=DjangoJSONEncoder,ensure_ascii = False)
     return HttpResponse(favorites)
 
 def get_favorites(request):
-    user_id = request.user
+    data = json.loads(request.body)
+    user_id = data['email']
     favorites = stocks_api.get_favorites(user_id)
     favorites = json.dumps(favorites, cls=DjangoJSONEncoder,ensure_ascii = False)
     return HttpResponse(favorites)
+
+def get_user(request):
+    data = json.loads(request.body)
+    print(data)
+    valid = stocks_api.valid_user(data['email'])
+    if(valid):
+        user = stocks_api.get_user_info(data['email'])
+        success = True
+        response = HttpResponse(success)
+        response.set_cookie('token',user)
+        return response
+    else:
+        success = False
+        return HttpResponse(success)
