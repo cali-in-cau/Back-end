@@ -33,7 +33,7 @@ def get_favorites(request):
         return HttpResponse(favorites)
 
 def get_user(request):
-    data = json.loads(request.body)
+    data = json.loads(request.COOKIE)
     valid = auth.valid_user(data['token'])
     if(valid):
         user = auth.get_user_info(data['token'])
@@ -52,4 +52,8 @@ def register(request):
     success = {'success':True}
     response = HttpResponse(json.dumps(success))
     response.set_cookie('token',user,httponly=True)
+    return response
+
+def logout(request):
+    response.delete_cookie('token')
     return response
