@@ -37,7 +37,7 @@ def get_user(request):
     valid = auth.valid_user(data['token'])
     if(valid):
         user = auth.get_user_info(data['token'])
-        success = {'success':valid}
+        success = {'success':valid, 'token':user}
         response = HttpResponse(json.dumps(success))
         response.set_cookie('token',user)
         return response
