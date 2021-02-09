@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users',
     'transactions',
     'rest_framework',
+    'mail',
 
     #about allauth -1
     'django.contrib.sites',
@@ -188,3 +189,14 @@ CORS_ORIGIN_ALLOW_ALL = True # <- 모든 호스트 허용
 #    "http://52.79.227.188",
 #)
 SESSION_COOKIE_HTTPONLY = True
+
+#Email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'stockreaderofficial@gmail.com'
+EMAIL_HOST_PASSWORD = 'caliincau1!'
+SERVER_EMAIL = 'stockreaderofficial@gmail.com'
+DEFAULT_FROM_MAIL = 'stockreaderofficial'

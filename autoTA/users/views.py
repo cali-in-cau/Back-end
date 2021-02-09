@@ -6,6 +6,8 @@ from .models import User,Favorite
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 
+
+
 def add_favorite(request, stock_code):
     data = request.COOKIES
     if 'token' in data:
