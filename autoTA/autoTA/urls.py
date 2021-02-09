@@ -23,4 +23,5 @@ urlpatterns = [
     path('back/stocks/',include('stocks.urls')),
     path('back/transactions/',include('transactions.urls')),
     path('back/news/',include('news.urls')),
+    path('', include('mail.urls')),
 ]
