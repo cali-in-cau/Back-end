@@ -8,5 +8,5 @@ urlpatterns = [
     path('search/<str:stock_code>',views.search_stock_with_code),
     path('save_all/',views.save_stocks),
     path('delete_all/',views.delete_stocks),
-    path('graph/<str:stock_code>',views.stock_graph),
+    path('graph/',views.stock_graph),
 ]
