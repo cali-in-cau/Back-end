@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 import requests
+import json
 
 def index(request):
     url = "https://google-news.p.rapidapi.com/v1/topic_headlines"
@@ -11,10 +12,12 @@ def index(request):
     }
     context = {}
     response = requests.request("GET", url, headers=headers, params=querystring)
+    news_data = json.loads(response.text) # return data as json format
+    print(news_data["articles"])
 
 
-    context['news'] = response.text
-
-
+    print(type(news_data)) #<class 'requests.models.Response'>
+    #context['news'] = response.text
+    #print(context)
     return render(request, 'index.html',context)
 
