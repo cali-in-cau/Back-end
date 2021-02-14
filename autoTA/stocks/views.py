@@ -9,6 +9,7 @@ from django.db.models import Q
 from .models import Stock
 from django.contrib import messages
 
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -23,8 +24,12 @@ def delete_stocks(request):
     print('data is deleted')
     return render(request, 'index.html')
 
-def stock_graph(request,stock_code):
-    data = stocks_api.get_stock_data(stock_code)
+def stock_graph(request):
+    date_type = request.GET.get('date_type')
+    start_date = request.GET.get('start_date')
+    stock_code = request.GET.get('stock_code')
+    print(date_type,start_date,stock_code)
+    data = stocks_api.get_stock_data(stock_code,date_type,start_date)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
     print('show the stock data')
     return HttpResponse(data)

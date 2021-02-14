@@ -3,6 +3,8 @@ import pandas as pd
 from datetime import datetime
 from stocks.models import Stock
 from users.models import Favorite,User
+from datetime import timedelta
+from dateutil.relativedelta import relativedelta
 
 
 def save_in_db(stock_df,index='none'):
@@ -25,11 +27,11 @@ def save_stocks_data_in_db():
 def delete_stocks_data():
     Stock.objects.all().delete()
 
-def get_stock_data(code):
+def get_stock_data(code, date_type, start_date):
     data = {"info":{},"data":{}}
     stock = Stock.objects.filter(stock_code=code)
     if stock.exists():
-        start=datetime(2020,1,4)
+        start=datetime.today() - relativedelta(years=int(start_date))
         end=datetime.today().strftime("%Y-%m-%d")
         data["info"]["code"] = stock.first().stock_code
         data["info"]["name"] = stock.first().stock_name
@@ -38,12 +40,38 @@ def get_stock_data(code):
         df_graph_data = fdr.DataReader(code,start,end)
         date = []
         value = []
+        index_controller = ""
+        row_controller = pd.DataFrame(columns=['Close','Open','High','Low','Volume','Change'])
+        divider = 0
         for i,row in df_graph_data.iterrows():
-            date.append(i.strftime('%Y-%m-%d'))
-            value.append(row.to_dict())
-        data['data']['date'] = date
-        data['data']['value'] = value
-        #print(data)
+            if date_type == 'month':
+                if i.strftime('%Y-%m-%d')[0:7] == index_controller:
+                    index_controller = i.strftime('%Y-%m-%d')[0:7]
+                    row_controller += row
+                else:
+                    if divider != 0 :
+                        date.append(index_controller)
+                        value.append((row_controller/divider).to_dict())
+                    index_controller = i.strftime('%Y-%m-%d')[0:7]
+                    row_controller = row
+                    divider = 0
+            elif date_type == 'week':
+                if i.weekday() == 0:
+                    if divider != 0:
+                        date.append(index_controller)
+                        value.append((row_controller/divider).to_dict())
+                    index_controller = i.strftime('%Y-%m-%d')
+                    row_controller = row
+                    divider = 0
+                else:
+                    row_controller += row
+            else:
+                date.append(i.strftime('%Y-%m-%d'))
+                value.append(row.to_dict())
+            divider += 1
+            
+        data['data']['date'] = date[1:]
+        data['data']['value'] = value[1:]
     return data
 
 def add_favorite(user_email,favorite_code):
