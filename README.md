@@ -26,7 +26,7 @@ Ubuntu Environment:
 
 ## How to execute the file
 
-MacOS Environment :apple:
+MacOS, Ubuntu Environment :apple:
 
 1. Before executing the file you need Python >= 3.1.3 .
 
