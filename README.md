@@ -11,12 +11,18 @@
 Ubuntu Environment:
 
 1. Install Django
-    - $ pip install Django
+    ```
+    $ pip install Django
+    ```
 2. Install modules in Django
    (cors, rest_framework, allauth)
-    - $ pip install django-cors-headers djangorestframework django-allauth
+    ```
+    $ pip install django-cors-headers djangorestframework django-allauth
+    ```
 3. Install extra modules
-    - $ pip install finance-datareader bs4
+    ```
+    $ pip install finance-datareader bs4
+    ```
 
 ## How to execute the file
 
@@ -26,10 +32,14 @@ MacOS Environment :apple:
 
 2. Open your terminal and go to the directory of the AutoTA file on your terminal.
 
-    - $ cd Backend/autoTA
+    ```
+    $ cd Backend/autoTA
+    ```
 
 3. Start server
-    - $ python manage.py runserver
+    ```
+    $ python manage.py runserver
+    ```
 
 Then you'll see this on your terminal.
 
