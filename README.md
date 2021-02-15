@@ -8,7 +8,7 @@
 
 ## Prerequisites
 
-Ubuntu Environment:
+MacOS, Ubuntu Environment :
 
 1. Install Django
     ```
@@ -26,7 +26,7 @@ Ubuntu Environment:
 
 ## How to execute the file
 
-MacOS, Ubuntu Environment :apple:
+MacOS, Ubuntu Environment :
 
 1. Before executing the file you need Python >= 3.1.3 .
 
