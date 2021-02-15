@@ -3,8 +3,9 @@
 * Django
 * Python
 * sqlite
-![dj](https://user-images.githubusercontent.com/41604678/107917985-3342b580-6fac-11eb-8364-c297b10d98e5.png)
 
+
+![dj](https://user-images.githubusercontent.com/41604678/107917985-3342b580-6fac-11eb-8364-c297b10d98e5.png)
 
 ## How to execute the file
 
