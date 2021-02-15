@@ -8,7 +8,13 @@
 
 ## Prerequisites
 
-MacOS:apple:, Ubuntu Environment:
+### MacOS:apple:, Ubuntu Environment
+
+-   Python >= 3.1.3 .
+
+---
+
+## Install
 
 1. Install Django
     ```
@@ -24,19 +30,15 @@ MacOS:apple:, Ubuntu Environment:
     $ pip install finance-datareader bs4
     ```
 
-## How to execute the file
+## Execute
 
-MacOS:apple:, Ubuntu Environment :
-
-1. Before executing the file you need Python >= 3.1.3 .
-
-2. Open your terminal and go to the directory of the AutoTA file on your terminal.
+1. Open your terminal and go to the directory of the AutoTA file on your terminal.
 
     ```
     $ cd Backend/autoTA
     ```
 
-3. Start server
+2. Start server
     ```
     $ python manage.py runserver
     ```
