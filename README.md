@@ -26,7 +26,9 @@ Then you'll see this on your terminal.
 4. As what the terminal said, you can debug the server at http://127.0.0.1:8000/ local server.
    Now You can run the server ! If you want to open the specific api then jump into these urls.
    
-   |/back/stocks/[name='index']|
-   |/back/stocks/search/<str:keyword>
 
-
+back/stocks/ [name='index']
+back/stocks/ search/<str:keyword>
+back/stocks/ search/<str:stock_code>
+back/stocks/ graph/
+back/news/
