@@ -3,9 +3,7 @@
 * Django
 * Python
 * sqlite
-
 ![dj](https://user-images.githubusercontent.com/41604678/107917985-3342b580-6fac-11eb-8364-c297b10d98e5.png)
-
 
 
 ## How to execute the file
@@ -26,6 +24,9 @@ Then you'll see this on your terminal.
 
 
 4. As what the terminal said, you can debug the server at http://127.0.0.1:8000/ local server.
-   Now You can run the server !
+   Now You can run the server ! If you want to open the specific api then jump into these urls.
+   
+   |/back/stocks/[name='index']|
+   |/back/stocks/search/<str:keyword>
 
-# <a href="https://www.djangoproject.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-original.svg" alt="django" width="30" height="30"/>  <a href="https://www.python.org" target="_blank">
+
