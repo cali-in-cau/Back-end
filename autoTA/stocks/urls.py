@@ -9,4 +9,5 @@ urlpatterns = [
     path('save_all/',views.save_stocks),
     path('delete_all/',views.delete_stocks),
     path('graph/',views.stock_graph),
+    path('predict/',views.stock_predict),
 ]
