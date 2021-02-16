@@ -8,6 +8,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from .models import Stock
 from django.contrib import messages
+import requests
 
 
 # Create your views here.
@@ -24,17 +25,28 @@ def delete_stocks(request):
     print('data is deleted')
     return render(request, 'index.html')
 
+# front -> back, 단순 그래프 정보만 리턴
 def stock_graph(request):
     date_type = request.GET.get('date_type')
     start_date = request.GET.get('start_date')
     stock_code = request.GET.get('stock_code')
-    print(date_type,start_date,stock_code)
     data = stocks_api.get_stock_data(stock_code,date_type,start_date)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
     print('show the stock data')
     return HttpResponse(data)
     #return render(request, 'show_graph.html',{"data":data})
 
+# front -> back 으로 predict 정보를 요청할 때
+def stock_predict(request):
+    date_type = request.GET.get('date_type')
+    start_date = request.GET.get('start_date')
+    stock_code = request.GET.get('stock_code')
+    print(date_type,start_date,stock_code)
+    data = stocks_api.get_stock_data(stock_code,date_type,start_date)
+    res = requests.post('http://yaeoni.o-r.kr/ml/predict', data)
+    data = json.dumps(res, cls=DjangoJSONEncoder,ensure_ascii = False)
+    print(data)
+    return HttpResponse(data)
 
 def search_stock(request,keyword):
     stocks = Stock.objects.all()

@@ -31,8 +31,11 @@ def get_stock_data(code, date_type, start_date):
     data = {"info":{},"data":{}}
     stock = Stock.objects.filter(stock_code=code)
     if stock.exists():
-        start=datetime.today() - relativedelta(years=int(start_date))
+        if not date_type in {'month','week','day'}:
+            return {'success':'failed', 'message':"wrong date_type"}
+        start=datetime.today() - relativedelta(months=int(start_date))
         end=datetime.today().strftime("%Y-%m-%d")
+        data["info"]["date_type"] = date_type
         data["info"]["code"] = stock.first().stock_code
         data["info"]["name"] = stock.first().stock_name
         data["info"]["type"] = stock.first().stock_type
@@ -65,13 +68,14 @@ def get_stock_data(code, date_type, start_date):
                     divider = 0
                 else:
                     row_controller += row
-            else:
+            elif date_type =='day':
                 date.append(i.strftime('%Y-%m-%d'))
                 value.append(row.to_dict())
             divider += 1
-            
         data['data']['date'] = date[1:]
         data['data']['value'] = value[1:]
+    else:
+        return {'success':'failed', 'message':"wrong stock_code"}
     return data
 
 def add_favorite(user_email,favorite_code):
