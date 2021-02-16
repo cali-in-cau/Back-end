@@ -39,7 +39,6 @@ def get_stock_data(code, date_type, start_date):
         data["info"]["code"] = stock.first().stock_code
         data["info"]["name"] = stock.first().stock_name
         data["info"]["type"] = stock.first().stock_type
-        data["info"]["industry"] = stock.first().stock_industry
         df_graph_data = fdr.DataReader(code,start,end)
         date = []
         value = []
