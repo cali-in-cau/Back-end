@@ -44,7 +44,7 @@ def stock_predict(request):
     print(date_type,start_date,stock_code)
     data = stocks_api.get_stock_data(stock_code,date_type,start_date)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
-    res = requests.post('http://localhost:8888/ml/predict', data)
+    res = requests.post('http://yaeoni.o-r.kr/ml/predict', data)
     result = {'predict':json.loads(res.text),'data':json.loads(data)}
     result = json.dumps(result, cls=DjangoJSONEncoder,ensure_ascii = False)
     return HttpResponse(result)
