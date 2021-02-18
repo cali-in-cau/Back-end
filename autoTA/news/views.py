@@ -21,8 +21,13 @@ def index(request):
         img.append(article['urlToImage'])
         url.append(article['url'])
 
-    news = zip(title, description, img, url)
-    print(news)
+    context = {
+        'title': title,
+        'description' : description,
+        'img' :  img,
+        'url' : url,
+    }
 
-    return render(request, 'index.html', context={'news':news})
+
+    return render(request, 'index.html', context)
 
