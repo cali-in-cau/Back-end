@@ -1,18 +1,15 @@
 from django.shortcuts import render
-import requests
+from newsapi import NewsApiClient
+from pandas.io.json import json_normalize
 
 def index(request):
-    url = "https://google-news.p.rapidapi.com/v1/topic_headlines"
-    querystring = {"lang": "en", "country": "US", "topic": "business"}
-    headers = {
-        'x-rapidapi-key': "5dd3a7daf5msh8aab6de8f4a3c93p1069c3jsnd645a395d8a8",
-        'x-rapidapi-host': "google-news.p.rapidapi.com"
-    }
-    context = {}
-    response = requests.request("GET", url, headers=headers, params=querystring)
 
+    newsapi = NewsApiClient(api_key = 'c840bf8b562c42388c72529e4459e18e')
 
-    context['news'] = response.text
+    top_headlines = newsapi.get_top_headlines(category='business', language='en', country='us')
+    articles = top_headlines['articles']
+    context = {'news': articles}
+    print(context)
 
     return render(request, 'index.html', context)
 
