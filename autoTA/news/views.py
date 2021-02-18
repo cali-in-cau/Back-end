@@ -22,9 +22,7 @@ def index(request):
         url.append(article['url'])
 
     news = zip(title, description, img, url)
+    print(news)
 
-    context = {'news': articles}
-    print(context)
-
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', context={'news':news})
 
