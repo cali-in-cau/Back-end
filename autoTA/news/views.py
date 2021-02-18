@@ -8,6 +8,21 @@ def index(request):
 
     top_headlines = newsapi.get_top_headlines(category='business', language='en', country='us')
     articles = top_headlines['articles']
+
+    description = []
+    title = []
+    img = []
+    url = []
+
+    for i in range(len(articles)):
+        article = articles[i]
+        title.append(article['title'])
+        description.append(article['description'])
+        img.append(article['urlToImage'])
+        url.append(article['url'])
+
+    news = zip(title, description, img, url)
+
     context = {'news': articles}
     print(context)
 
