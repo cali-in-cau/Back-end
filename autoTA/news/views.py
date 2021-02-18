@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 import requests
 
 def index(request):
@@ -15,6 +14,5 @@ def index(request):
 
     context['news'] = response.text
 
-
-    return render(request, 'index.html',context)
+    return render(request, 'index.html', context)
 
