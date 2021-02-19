@@ -51,7 +51,6 @@ def stock_predict(request):
 
 def search_stock(request,keyword):
     stocks = Stock.objects.all()
-    # keyword = request.GET.get('keyword', '')  # 검색어
     stock_data = []
     context = {}
     if keyword:

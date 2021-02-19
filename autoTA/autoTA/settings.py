@@ -200,3 +200,5 @@ EMAIL_HOST_USER = 'stockreaderofficial@gmail.com'
 EMAIL_HOST_PASSWORD = 'caliincau1!'
 SERVER_EMAIL = 'stockreaderofficial@gmail.com'
 DEFAULT_FROM_MAIL = 'stockreaderofficial'
+
+NEWS_APIKEY = "c840bf8b562c42388c72529e4459e18e"
