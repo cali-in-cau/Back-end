@@ -28,6 +28,7 @@
 3. Install extra modules
     ```
     $ pip install finance-datareader bs4 newsapi-python
+    $ pip install newsapi-python
     ```
 
 ## Execute
