@@ -9,5 +9,6 @@ urlpatterns = [
     path('save_all/',views.save_stocks),
     path('delete_all/',views.delete_stocks),
     path('graph/',views.stock_graph),
-    path('predict/',views.stock_predict),
+    path('predict/pattern/',views.stock_predict_pattern),
+    path('predict/stockinfo/',views.stock_predict_stockinfo),
 ]
