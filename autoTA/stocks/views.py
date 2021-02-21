@@ -45,7 +45,7 @@ def stock_predict_pattern(request):
     if(date_type=='month'):
         data = stocks_api.get_stock_data(stock_code,date_type,365)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
-    res = requests.post('http://localhost:8888/ml/predict', data)
+    res = requests.post('http://yaeoni.o-r/kr/ml/predict', data)
     result = json.loads(res.text)
     image_prediction = result['image_prediction']
     talib = result['talib']
@@ -66,7 +66,7 @@ def stock_predict_stockinfo(request):
     if(date_type=='month'):
         data = stocks_api.get_stock_data(stock_code,date_type,365)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
-    res = requests.post('http://localhost:8888/ml/predict', data)
+    res = requests.post('http://yaeoni.o-r.kr/ml/predict', data)
     result = json.loads(res.text)['price_prediction']
     result = json.dumps(result, cls=DjangoJSONEncoder,ensure_ascii = False)
     return HttpResponse(result)
