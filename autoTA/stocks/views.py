@@ -34,7 +34,28 @@ def stock_graph(request):
     #return render(request, 'show_graph.html',{"data":data})
 
 # front -> back 으로 predict 정보를 요청할 때
-def stock_predict(request):
+def stock_predict_pattern(request):
+    date_type = request.GET.get('date_type')
+    stock_code = request.GET.get('stock_code')
+    data = None
+    if(date_type=='day'):
+        data = stocks_api.get_stock_data(stock_code,date_type,21)
+    if(date_type=='week'):
+        data = stocks_api.get_stock_data(stock_code,date_type,100)
+    if(date_type=='month'):
+        data = stocks_api.get_stock_data(stock_code,date_type,365)
+    data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
+    res = requests.post('http://localhost:8888/ml/predict', data)
+    result = json.loads(res.text)
+    image_prediction = result['image_prediction']
+    talib = result['talib']
+    talibv2 = result['talibv2']
+    result = {'image_prediction':image_prediction,'talib':talib,'talibv2':talibv2}
+    result = json.dumps(result, cls=DjangoJSONEncoder,ensure_ascii = False)
+    return HttpResponse(result)
+
+# front -> back 으로 predict 정보를 요청할 때
+def stock_predict_stockinfo(request):
     date_type = request.GET.get('date_type')
     stock_code = request.GET.get('stock_code')
     data = None
@@ -46,7 +67,7 @@ def stock_predict(request):
         data = stocks_api.get_stock_data(stock_code,date_type,365)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
     res = requests.post('http://localhost:8888/ml/predict', data)
-    result = json.loads(res.text)
+    result = json.loads(res.text)['price_prediction']
     result = json.dumps(result, cls=DjangoJSONEncoder,ensure_ascii = False)
     return HttpResponse(result)
 

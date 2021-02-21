@@ -48,23 +48,35 @@ def get_stock_data(code, date_type, start_date):
                 if i.strftime('%Y-%m-%d')[0:7] == index_controller:
                     index_controller = i.strftime('%Y-%m-%d')[0:7]
                     row_controller += row
+                    if df_graph_data.index[-1] == i:
+                        date.append(index_controller)
+                        value.append((row_controller/divider).to_dict())
                 else:
                     if divider != 0 :
                         date.append(index_controller)
                         value.append((row_controller/divider).to_dict())
                     index_controller = i.strftime('%Y-%m-%d')[0:7]
                     row_controller = row
+                    if df_graph_data.index[-1] == i:
+                        date.append(index_controller)
+                        value.append((row_controller/divider).to_dict())
                     divider = 0
             elif date_type == 'week':
-                if i.weekday() == 0:
+                if i.weekday() == 4:
                     if divider != 0:
                         date.append(index_controller)
                         value.append((row_controller/divider).to_dict())
                     index_controller = i.strftime('%Y-%m-%d')
                     row_controller = row
+                    if df_graph_data.index[-1] == i:
+                        date.append(index_controller)
+                        value.append((row_controller/divider).to_dict())
                     divider = 0
                 else:
                     row_controller += row
+                    if df_graph_data.index[-1] == i:
+                        date.append(index_controller)
+                        value.append((row_controller/divider).to_dict())
             elif date_type =='day':
                 date.append(i.strftime('%Y-%m-%d'))
                 value.append(row.to_dict())
