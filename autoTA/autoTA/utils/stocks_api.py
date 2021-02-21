@@ -17,11 +17,9 @@ def save_in_db(stock_df,index='none'):
             stock.save()
 
 def save_stocks_data_in_db():
-    kospi_df = fdr.StockListing('KOSPI')
-    kosdaq_df = fdr.StockListing('KOSDAQ')
+    #krx_df = fdr.StockListing('KRX')
     nasdaq_df = fdr.StockListing('NASDAQ')
-    save_in_db(kospi_df,'KOSPI')
-    save_in_db(kosdaq_df,'KOSDAQ')
+    #save_in_db(krx_df,'KRX')
     save_in_db(nasdaq_df,'NASDAQ')
 
 def delete_stocks_data():
@@ -33,7 +31,7 @@ def get_stock_data(code, date_type, start_date):
     if stock.exists():
         if not date_type in {'month','week','day'}:
             return {'success':'failed', 'message':"wrong date_type"}
-        start=datetime.today() - relativedelta(months=int(start_date))
+        start=datetime.today() - relativedelta(days=int(start_date))
         end=datetime.today().strftime("%Y-%m-%d")
         data["info"]["date_type"] = date_type
         data["info"]["code"] = stock.first().stock_code
