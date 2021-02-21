@@ -17,13 +17,11 @@ def index(request):
 
 def save_stocks(request):
     stocks_api.save_stocks_data_in_db()
-    print('data is saved')
-    return render(request,'index.html')
+    return HttpResponse('data is saved')
 
 def delete_stocks(request):
     stocks_api.delete_stocks_data()
-    print('data is deleted')
-    return render(request, 'index.html')
+    return HttpResponse('data is deleted')
 
 # front -> back, 단순 그래프 정보만 리턴
 def stock_graph(request):
@@ -32,24 +30,28 @@ def stock_graph(request):
     stock_code = request.GET.get('stock_code')
     data = stocks_api.get_stock_data(stock_code,date_type,start_date)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
-    print('show the stock data')
     return HttpResponse(data)
     #return render(request, 'show_graph.html',{"data":data})
 
 # front -> back 으로 predict 정보를 요청할 때
 def stock_predict(request):
     date_type = request.GET.get('date_type')
-    start_date = request.GET.get('start_date')
     stock_code = request.GET.get('stock_code')
-    print(date_type,start_date,stock_code)
-    data = stocks_api.get_stock_data(stock_code,date_type,start_date)
+    data = None
+    if(date_type=='day'):
+        data = stocks_api.get_stock_data(stock_code,date_type,15)
+    if(date_type=='week'):
+        data = stocks_api.get_stock_data(stock_code,date_type,100)
+    if(date_type=='month'):
+        data = stocks_api.get_stock_data(stock_code,date_type,365)
     data = json.dumps(data, cls=DjangoJSONEncoder,ensure_ascii = False)
-    res = requests.post('http://yaeoni.o-r.kr/ml/predict', data)
-    result = {'predict':json.loads(res.text),'data':json.loads(data)}
+    res = requests.post('http://localhost:8888/ml/predict', data)
+    result = json.loads(res.text)
     result = json.dumps(result, cls=DjangoJSONEncoder,ensure_ascii = False)
     return HttpResponse(result)
 
-def search_stock(request,keyword):
+def search_stock(request):
+    keyword = request.GET.get('keyword')
     stocks = Stock.objects.all()
     stock_data = []
     context = {}
@@ -65,14 +67,13 @@ def search_stock(request,keyword):
     print(context)
     return HttpResponse(context)
 
-def search_stock_with_code(request, stock_code):
-    stock = Stock.objects.get(stock_code = stock_code)
-    if stock_code:
+def search_stock_with_code(request):
+    code = request.GET.get('stock_code')
+    stock = Stock.objects.get(stock_code = code)
+    if code:
         name = stock.stock_name
-        code = stock.stock_code
         stockType = stock.stock_type
         industry = stock.stock_industry
-
         context = {'name': name, 'code': code, 'type': stockType, 'industry': industry}
         context = json.dumps(context, cls=DjangoJSONEncoder,ensure_ascii = False)
         print(context)
