@@ -88,6 +88,27 @@ def search_stock(request):
     print(context)
     return HttpResponse(context)
 
+
+# def search_stock_with_code(request, stock_code):
+#     stock = Stock.objects.all()
+#     stock_data = []
+#     context = {}
+#
+#    # stock = Stock.objects.get(stock_code = stock_code)
+#     if stock_code:
+#         stock_with_code = stock.filter(stock_code__icontains=stock_code)
+#         for stock in stock_with_code:
+#             name = stock.stock_name
+#             code = stock.stock_code
+#             stockType = stock.stock_type
+#             industry = stock.stock_industry
+#             data = {'name': name, 'code': code, 'type': stockType, 'industry': industry}
+#             stock_data.append(data)
+#     context['result'] = stock_data
+#     context = json.dumps(context, cls=DjangoJSONEncoder,ensure_ascii = False)
+#     print(context)
+
+
 def search_stock_with_code(request):
     code = request.GET.get('stock_code')
     stock = Stock.objects.get(stock_code = code)
@@ -98,5 +119,6 @@ def search_stock_with_code(request):
         context = {'name': name, 'code': code, 'type': stockType, 'industry': industry}
         context = json.dumps(context, cls=DjangoJSONEncoder,ensure_ascii = False)
         print(context)
+
     return HttpResponse(context)
 
